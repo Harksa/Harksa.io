@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Repository.Models.Helpers.ShortGameModel>
+
+@if (Model != null && Model.Any()) {
+    <div class="card-deck">
+        @foreach (var game in Model) {
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 1em">
+
+                <div class="card">
+
+                    <a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">
+                        <img class="card-img-top" src="~/images/games/@game.AccountId/@game.ImageFileName" alt="@game.ImageFileName"/>
+                    </a>
+
+                    <div class="card-body">
+                        <a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">
+                            <h5 class="card-title">@game.Title</h5>
+                        </a>
+                        <p class="card-text text-muted" style="font-size: 80%">@game.ShortDescription</p>
+                        <p class="card-subtitle" style="color: darkred; font-size: 60%">
+                            @foreach (var category in game.Categories) {
+                                <span style="margin-right: 0.2em">#@category</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} else {
+    <div class="container-fluid text-center" style="margin-top: 4em">
+        <h2>Oups, on dirait qu'il n'y a aucun jeux à afficher ici !</h2>
+    </div>
+}

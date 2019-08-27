@@ -1,0 +1,25 @@
+﻿@model Repository.Models.Helpers.FullGameModel
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+<div>
+    <h1>@Model.Title</h1>
+    <h5>Jeu par @Model.Author</h5>
+    <small class="text-muted font-weight-light">@Model.ShortDescription</small>
+</div>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="order-md-1 col-md-8 order-sm-2 order-2">
+            <p>@Model.FullDescription</p>
+            <p class="text-right small">Publiée le @Model.PublicationTime.ToShortDateString()</p>
+        </div>
+        <div class="order-md-2 col-md-4 order-sm-1 order-1">
+            <img src="~/images/games/@Model.AccountId/@Model.ImageFileName" alt="@Model.ImageFileName" />
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,72 @@
+﻿@model Harksa.io.Models.GameRegisteringModel
+
+@{
+    ViewBag.Title = "Créer une page de jeu";
+}
+
+<h4>Ajouter un jeu</h4>
+
+<hr />
+
+<form method="post" enctype="multipart/form-data" asp-action="Create" >
+    <div class="form-group row">
+        <label asp-for="Title" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" class="form-control" />
+        </div>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group row">
+        <label asp-for="ShortDescription" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input asp-for="ShortDescription" class="form-control" />
+            <small class="form-text text-muted">Ce texte sera utilisé pour décrire rapidement ton jeu.</small>
+        </div>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Description" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Categories" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input asp-for="Categories" class="form-control" />
+            <small class="form-text text-muted">Chaque tags doit être séparé par un ";". Un maximum de 3 tags est autorisé.</small>
+        </div>
+        <span asp-validation-for="Categories" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group row">
+        <label asp-for="GamePicture" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input asp-for="GamePicture" class="form-control custom-file-input" accept=".png, .jpg, .gif"/>
+                <label class="custom-file-label"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Créer" class="btn btn-primary" />
+    </div>
+</form>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.custom-file-input').on("change",
+                function() {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+        });
+    </script>
+}

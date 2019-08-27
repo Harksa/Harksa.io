@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Harksa.io", "Harksa.io\Harksa.io.csproj", "{06F24DE4-7232-4295-8AC1-674954772678}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{CCCF1181-1178-44C6-B591-63AE6B6F65E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06F24DE4-7232-4295-8AC1-674954772678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F24DE4-7232-4295-8AC1-674954772678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F24DE4-7232-4295-8AC1-674954772678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F24DE4-7232-4295-8AC1-674954772678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCCF1181-1178-44C6-B591-63AE6B6F65E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCCF1181-1178-44C6-B591-63AE6B6F65E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCCF1181-1178-44C6-B591-63AE6B6F65E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCCF1181-1178-44C6-B591-63AE6B6F65E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05119AC5-8DC5-4589-8AD9-64FC67A6DCC9}
+	EndGlobalSection
+EndGlobal
