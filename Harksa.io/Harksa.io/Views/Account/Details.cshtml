@@ -1,0 +1,15 @@
+﻿@model Repository.Models.Helpers.AccountViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    ViewBag.Title = @Model.AccountName;
+}
+
+<div>
+    <h5>Jeux par @Model.AccountName</h5>
+</div>
+
+<hr/>
+
+<partial name="_GameCard" model="@Model.GameCards"/>
+

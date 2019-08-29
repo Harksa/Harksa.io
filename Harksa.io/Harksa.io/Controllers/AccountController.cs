@@ -69,5 +69,10 @@ namespace Harksa.io.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Details(int id) {
+            return View(_databaseService.GetAccountInformations(id));
+        }
     }
 }

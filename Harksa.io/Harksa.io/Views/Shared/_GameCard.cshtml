@@ -3,25 +3,21 @@
 @if (Model != null && Model.Any()) {
     <div class="card-deck">
         @foreach (var game in Model) {
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12" style="margin-bottom: 1em">
+            <div class="card col-lg-3 col-md-4 col-sm-6 col-12" style="padding: 0">
+                <a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">
+                    <img class="card-img-top" src="~/images/games/@game.AccountId/@game.ImageFileName" alt="@game.ImageFileName"/>
+                </a>
 
-                <div class="card">
-
+                <div class="card-body">
                     <a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">
-                        <img class="card-img-top" src="~/images/games/@game.AccountId/@game.ImageFileName" alt="@game.ImageFileName"/>
+                        <h5 class="card-title">@game.Title</h5>
                     </a>
-
-                    <div class="card-body">
-                        <a asp-controller="Game" asp-action="Details" asp-route-id="@game.Id">
-                            <h5 class="card-title">@game.Title</h5>
-                        </a>
-                        <p class="card-text text-muted" style="font-size: 80%">@game.ShortDescription</p>
-                        <p class="card-subtitle" style="color: darkred; font-size: 60%">
-                            @foreach (var category in game.Categories) {
-                                <span style="margin-right: 0.2em">#@category</span>
-                            }
-                        </p>
-                    </div>
+                    <p class="card-text text-muted" style="font-size: 80%">@game.ShortDescription</p>
+                    <p class="card-subtitle" style="color: darkred; font-size: 60%">
+                        @foreach (var category in game.Categories) {
+                            <span style="margin-right: 0.2em">#@category</span>
+                        }
+                    </p>
                 </div>
             </div>
         }

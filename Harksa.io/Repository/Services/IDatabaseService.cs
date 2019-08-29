@@ -10,8 +10,9 @@ namespace Repository.Services
         int? GetAccountIdFromIdentityId(string id);
 
         Task RegisterAccount(Account account);
+        AccountViewModel GetAccountInformations(int accountId);
 
-        IEnumerable<ShortGameModel> GetGamesCards();
+        IEnumerable<ShortGameModel> GetGamesCards(int accountId = -1);
         Task<int> RegisterGame(Game game);
         Task<FullGameModel> GetGame(int id);
 

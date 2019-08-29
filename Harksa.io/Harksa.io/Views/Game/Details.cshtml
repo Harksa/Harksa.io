@@ -6,7 +6,7 @@
 
 <div>
     <h1>@Model.Title</h1>
-    <h5>Jeu par @Model.Author</h5>
+    <h5>Jeu par <a asp-controller="Account" asp-action="Details" asp-route-id="@Model.AccountId">@Model.Author</a></h5>
     <small class="text-muted font-weight-light">@Model.ShortDescription</small>
 </div>
 
@@ -18,7 +18,7 @@
             <p class="text-right small">Publiée le @Model.PublicationTime.ToShortDateString()</p>
         </div>
         <div class="order-md-2 col-md-4 order-sm-1 order-1">
-            <img src="~/images/games/@Model.AccountId/@Model.ImageFileName" alt="@Model.ImageFileName" />
+            <img style="width: inherit;" src="~/images/games/@Model.AccountId/@Model.ImageFileName" alt="@Model.ImageFileName" />
         </div>
     </div>
 </div>
