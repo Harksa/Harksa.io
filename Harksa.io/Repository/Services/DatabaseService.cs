@@ -102,6 +102,36 @@ namespace Repository.Services
             }
         }
 
+        public ShortGamesWithCategoryModel GetSameCategoryGameCards(string category) {
+            using (DatabaseContext context = new DatabaseContext()) {
+
+                var result = from g in context.Games
+                             join gc in context.GameCategories on g.Id equals gc.GameId
+                             join c in context.Categories on gc.CategoryId equals c.Id
+                             where c.Name == category
+                             select g;
+
+                List<ShortGameModel> games = new List<ShortGameModel>();
+                foreach (var game in result) {
+                    ShortGameModel model = new ShortGameModel {
+                        Id               = game.Id,
+                        AccountId        = game.AccountId,
+                        Title            = game.Title,
+                        ImageFileName    = game.ImageFileName,
+                        ShortDescription = game.ShortDescription,
+                        Categories       = GetCategoriesNameFromGameId(game.Id)
+                    };
+
+                    games.Add(model);
+                }
+                
+                return new ShortGamesWithCategoryModel {
+                    Category = category,
+                    ShortGameModels = games
+                };
+            }
+        }
+
         public string GetAuthorNameFromAccountId(int accountId) {
             using (DatabaseContext context = new DatabaseContext()) {
                 var result = (from a in context.Accounts
@@ -141,10 +171,10 @@ namespace Repository.Services
                 List<int> ints = new List<int>();
 
                 if (categories == null || categories.Count == 0) {
-                    var cat = context.Categories.FirstOrDefault(c => c.Name == "UNTAGGED");
+                    var cat = context.Categories.FirstOrDefault(c => c.Name == "untagged");
 
                     if (cat == null) {
-                        var newcat = await context.Categories.AddAsync(new Category {Name = "UNTAGGED"});
+                        var newcat = await context.Categories.AddAsync(new Category {Name = "untagged"});
                         await context.SaveChangesAsync();
                         ints.Add(newcat.Entity.Id);
                     } else {
@@ -157,11 +187,14 @@ namespace Repository.Services
                 foreach (var category in categories) {
                     if (String.IsNullOrEmpty(category)) continue;
 
-                    var toUpper = category.ToUpperInvariant();
-                    var cat     = context.Categories.FirstOrDefault(c => c.Name == toUpper);
+                    var finalCategoryName = category.Trim();
+                    finalCategoryName = finalCategoryName.ToLowerInvariant();
+                    finalCategoryName = finalCategoryName.Replace(" ", "-");
+
+                    var cat = context.Categories.FirstOrDefault(c => c.Name == finalCategoryName);
 
                     if (cat == null) {
-                        var newcat = await context.Categories.AddAsync(new Category {Name = toUpper});
+                        var newcat = await context.Categories.AddAsync(new Category {Name = finalCategoryName});
                         await context.SaveChangesAsync();
                         ints.Add(newcat.Entity.Id);
                     } else {

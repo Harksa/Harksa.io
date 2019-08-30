@@ -15,6 +15,7 @@ namespace Repository.Services
         IEnumerable<ShortGameModel> GetGamesCards(int accountId = -1);
         Task<int> RegisterGame(Game game);
         Task<FullGameModel> GetGame(int id);
+        ShortGamesWithCategoryModel GetSameCategoryGameCards(string category);
 
         Task<IEnumerable<int>> GetCorrespondingCategoriesId(List<string> categories);
         Task AddGameCategories(int gameId, IEnumerable<int> categoriesList);

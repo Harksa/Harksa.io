@@ -79,5 +79,12 @@ namespace Harksa.io.Controllers
         public async Task<IActionResult> Details(int id) {
             return View(await _databaseService.GetGame(id));
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Games/Category/{category}")]
+        public IActionResult Categories(string category) {
+            return View(_databaseService.GetSameCategoryGameCards(category.ToLowerInvariant()));
+        }
     }
 }

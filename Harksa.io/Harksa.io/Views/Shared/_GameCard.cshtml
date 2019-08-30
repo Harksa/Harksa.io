@@ -15,7 +15,7 @@
                     <p class="card-text text-muted" style="font-size: 80%">@game.ShortDescription</p>
                     <p class="card-subtitle" style="color: darkred; font-size: 60%">
                         @foreach (var category in game.Categories) {
-                            <span style="margin-right: 0.2em">#@category</span>
+                            <a asp-controller="Game" asp-action="Categories" asp-route-category="@category" style="margin-right: 0.2em">#@category.ToUpperInvariant()</a>
                         }
                     </p>
                 </div>

@@ -1,0 +1,10 @@
+﻿@model Repository.Models.Helpers.ShortGamesWithCategoryModel
+
+@{
+    ViewBag.Title = "Catégories pour " + Model.Category;
+}
+
+<h5>Jeux de la catégorie @Model.Category.ToUpperInvariant()</h5>
+<hr/>
+
+<partial name="_GameCard" model="@Model.ShortGameModels"/>
