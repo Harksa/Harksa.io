@@ -9,7 +9,7 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190827093750_CreateDatabase")]
+    [Migration("20190903080425_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,14 +209,15 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Repository.Models.Comment", b =>
                 {
-                    b.Property<int>("GameId");
-
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccountId");
 
                     b.Property<string>("Content")
                         .HasMaxLength(512);
+
+                    b.Property<int>("GameId");
 
                     b.Property<int>("Score");
 
@@ -224,9 +225,11 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.HasKey("GameId", "Id");
+                    b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("GameId");
 
                     b.ToTable("Comments");
                 });

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Repository.Contexts;
 using Repository.Models;
 using Repository.Models.Helpers;
@@ -216,5 +217,29 @@ namespace Repository.Services
             }
         }
 
+        public async Task<IEnumerable<CommentClientSideModel>> GetComments(int gameId) {
+            using (DatabaseContext context = new DatabaseContext()) {
+                var commentClientSideModels = new List<CommentClientSideModel>();
+                var comments = await context.Comments.Where(c => c.GameId == gameId).ToArrayAsync();
+
+                foreach (var comment in comments) {
+                    commentClientSideModels.Add(new CommentClientSideModel {
+                        Title = comment.Title,
+                        Description = comment.Content,
+                        Score = comment.Score,
+                        AuthorName = GetAuthorNameFromAccountId(comment.AccountId)
+                    });
+                }
+
+                return commentClientSideModels;
+            }
+        }
+
+        public async Task PostComment(Comment comment) {
+            using (DatabaseContext context = new DatabaseContext()) {
+                await context.Comments.AddAsync(comment);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

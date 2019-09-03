@@ -207,14 +207,15 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Repository.Models.Comment", b =>
                 {
-                    b.Property<int>("GameId");
-
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccountId");
 
                     b.Property<string>("Content")
                         .HasMaxLength(512);
+
+                    b.Property<int>("GameId");
 
                     b.Property<int>("Score");
 
@@ -222,9 +223,11 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.HasKey("GameId", "Id");
+                    b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("GameId");
 
                     b.ToTable("Comments");
                 });

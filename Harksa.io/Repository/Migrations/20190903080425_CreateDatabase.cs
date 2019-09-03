@@ -213,16 +213,17 @@ namespace Repository.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                    GameId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     AccountId = table.Column<int>(nullable: false),
+                    GameId = table.Column<int>(nullable: false),
                     Score = table.Column<int>(nullable: false),
                     Title = table.Column<string>(maxLength: 64, nullable: false),
                     Content = table.Column<string>(maxLength: 512, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => new { x.GameId, x.Id });
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Comments_Accounts_AccountId",
                         column: x => x.AccountId,
@@ -307,6 +308,11 @@ namespace Repository.Migrations
                 name: "IX_Comments_AccountId",
                 table: "Comments",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_GameId",
+                table: "Comments",
+                column: "GameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameCategories_CategoryId",

@@ -1,0 +1,28 @@
+﻿@using Repository.Models
+@model System.Collections.Generic.IEnumerable<Repository.Models.Helpers.CommentClientSideModel>
+
+<div id="CommentDetails">
+    <h4>Commentaires</h4>
+    <hr />
+    @if (!Model.Any())
+    {
+        <div>Aucun commentaires à afficher</div>
+    }
+    else
+    {
+    <div class="card-columns">
+        @foreach (var comment in Model)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@comment.Title</h5>
+                    <p class="card-text">@comment.Description</p>
+                    <footer class="blockquote-footer">De @comment.AuthorName - @comment.Score / 5</footer>
+                </div>
+            </div>
+
+        }
+    </div>
+    }
+
+</div>

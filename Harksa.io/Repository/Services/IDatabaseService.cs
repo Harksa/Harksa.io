@@ -19,5 +19,8 @@ namespace Repository.Services
 
         Task<IEnumerable<int>> GetCorrespondingCategoriesId(List<string> categories);
         Task AddGameCategories(int gameId, IEnumerable<int> categoriesList);
+
+        Task<IEnumerable<CommentClientSideModel>> GetComments(int gameId);
+        Task PostComment(Comment commment);
     }
 }

@@ -1,4 +1,5 @@
-﻿@model Repository.Models.Helpers.FullGameModel
+﻿@using Harksa.io.Helpers
+@model Repository.Models.Helpers.FullGameModel
 
 @{
     ViewBag.Title = @Model.Title;
@@ -23,3 +24,22 @@
     </div>
 </div>
 
+@Html.Action("Details", "Comment", new {gameId = Model.Id})
+
+@Html.Action("Post", "Comment", new {gameId = Model.Id})
+
+@*@section Scripts {
+    <script>
+        $.ajax({
+            url: '@Url.Action("Post", "Comment")',
+            type: 'POST',
+            data: $("#CommentForm").serialize()
+        }).done(function(result) {
+            var $id = $("#CommentDetails");
+            var url = $id.data("url");
+            $id.load(url);
+        }).fail(function(a, b, c) {
+            console.log(c);
+        });
+    </script>
+}*@

@@ -13,7 +13,6 @@ namespace Repository.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder) {
             base.OnModelCreating(builder);
-            builder.Entity<Comment>().HasKey(c => new {c.GameId, c.Id});
             builder.Entity<GameCategory>().HasKey(gc => new {gc.GameId, gc.CategoryId});
 
             builder.Entity<Account>().HasOne(a => a.User).WithMany().HasForeignKey(a => a.UserId);
